@@ -1,7 +1,7 @@
 import pygame
 import random
 
-from bogo import bogosort
+from bogo import bogo_sort, bozo_sort
 from exchange import exchange_sort
 from bubble import bubble_sort, optimized_bubble_sort
 from oddeven import odd_even_sort
@@ -10,6 +10,8 @@ from cocktail import cocktail_shaker_sort
 from gnome import gnome_sort
 from insertion import insertion_sort, binary_insertion_sort
 from shell import shell_sort
+from selection import selection_sort
+from heap import heap_sort
 
 COLORS = {
     "bg": (0, 0, 0),
@@ -20,7 +22,8 @@ COLORS = {
     "sorted": (0, 255, 100)
 }
 ALGORITHMS = {
-    "Bogosort": bogosort,
+    "Bogo Sort": bogo_sort,
+    "Bozo Sort": bozo_sort,
     "Exchange Sort": exchange_sort,
     "Bubble Sort": bubble_sort,
     "Optimized Bubble Sort": optimized_bubble_sort,
@@ -30,9 +33,11 @@ ALGORITHMS = {
     "Gnome Sort": gnome_sort,
     "Insertion Sort": insertion_sort,
     "Shell Sort": shell_sort,
-    "Binary Insertion Sort": binary_insertion_sort
+    "Binary Insertion Sort": binary_insertion_sort,
+    "Selection Sort": selection_sort,
+    "Heap Sort": heap_sort,
 }
-MIN_SPEED = 10
+MIN_SPEED = 2
 MAX_SPEED = 1000
 
 
@@ -66,7 +71,7 @@ def draw_bars(arr, screen, h1=[], h2=[], h3=[], sorted=False):
             draw_bar(arr, screen, i, COLORS["h3"], screen_h, bar_w)
 
 
-def visualize(algorithm, n=50, speed=30, width=800, height=600, **kwargs):
+def visualize(algorithm, n=50, speed=20, width=800, height=600, **kwargs):
     # Initialize pygame
     pygame.init()
     screen = pygame.display.set_mode((width, height))
@@ -102,12 +107,12 @@ def visualize(algorithm, n=50, speed=30, width=800, height=600, **kwargs):
 
             if event.type == pygame.KEYDOWN:
                 if event.key in [pygame.K_KP_PLUS, pygame.K_PLUS] and current_speed < MAX_SPEED:
-                    current_speed += 10
+                    current_speed += 2
                     if current_speed > MIN_SPEED:
                         paused = False
                 
                 if event.key in [pygame.K_KP_MINUS, pygame.K_MINUS] and current_speed > MIN_SPEED:
-                    current_speed -= 10
+                    current_speed -= 2
                     if current_speed == MIN_SPEED:
                         paused = True
                 

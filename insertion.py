@@ -36,8 +36,24 @@ def binary_insertion_sort(arr):
     - Average: Θ(n^2)
     - Worst: O(n^2)
     """
+    def binary_search(arr, key):
+        """
+        Returns index of where key should be in an array.
+        """
+        left, right = 0, len(arr) - 1
+        
+        while left <= right:
+            mid = (left + right) // 2
+            
+            if arr[mid] <= key:
+                left = mid + 1
+            else:
+                right = mid - 1
+        
+        return left
+
     for i in range(1, len(arr)):
         key = arr[i]
-        j = binary_search()
-
-        a[:n] = a[:j] + [key] + arr[j:i] + arr[i + 1:]
+        j = binary_search(arr[:i], key)
+        yield arr, list(range(i)), [j], [i]
+        arr[:len(arr)] = arr[:j] + [key] + arr[j:i] + arr[i + 1:]
