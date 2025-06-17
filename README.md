@@ -45,16 +45,16 @@ Supported Gap Sequences:
 
 | Sequence Name                   | Keyword       | Year |
 | ------------------------------- | ------------- | ---- |
-| Shell                           | "shell"       | 1959 |
-| Hibbard                         | "hibbard"     | 1961 |
-| Papernov and Stasevich          | "papernov"    | 1965 |
-| Knuth                           | "knuth"       | 1973 |
-| Sedgewick (First sequence)      | "sedgewick82" | 1982 |
-| Sedgewick (Second sequence)     | "sedgewick86" | 1986 |
-| Tokuda                          | "tokuda"      | 1992 |
-| Ciura                           | "ciura"       | 2001 |
-| Lee                             | "lee"         | 2021 |
-| Skean, Ehrenborg, and Jaromczyk | "skean"       | 2023 |
+| Shell                           | `shell`       | 1959 |
+| Hibbard                         | `hibbard`     | 1961 |
+| Papernov and Stasevich          | `papernov`    | 1965 |
+| Knuth                           | `knuth`"      | 1973 |
+| Sedgewick (First sequence)      | `sedgewick82` | 1982 |
+| Sedgewick (Second sequence)     | `sedgewick86` | 1986 |
+| Tokuda                          | `tokuda`      | 1992 |
+| Ciura                           | `ciura`       | 2001 |
+| Lee                             | `lee`         | 2021 |
+| Skean, Ehrenborg, and Jaromczyk | `skean`       | 2023 |
 
 **Example:**
 
@@ -65,7 +65,7 @@ visualize("Shell Sort", sequence="ciura")
 ## Controls
 
 | **Control Key** | **Action**            |
-|-----------------|-----------------------|
+| --------------- | --------------------- |
 | `+`             | Increase speed        |
 | `-`             | Decrease speed        |
 | `Space`         | Pause/Resume          |
