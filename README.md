@@ -48,7 +48,7 @@ Supported Gap Sequences:
 | Shell                           | `shell`       | 1959 |
 | Hibbard                         | `hibbard`     | 1961 |
 | Papernov and Stasevich          | `papernov`    | 1965 |
-| Knuth                           | `knuth`"      | 1973 |
+| Knuth                           | `knuth`      | 1973 |
 | Sedgewick (First sequence)      | `sedgewick82` | 1982 |
 | Sedgewick (Second sequence)     | `sedgewick86` | 1986 |
 | Tokuda                          | `tokuda`      | 1992 |
