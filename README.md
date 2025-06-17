@@ -71,3 +71,4 @@ visualize("Shell Sort", sequence="ciura")
 | `Space`         | Pause/Resume          |
 | `r`             | Restart current array |
 | `n`             | Generate new array    |
+| `Escape`        | Exit visualization    |

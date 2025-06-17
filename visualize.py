@@ -79,12 +79,12 @@ def visualize(algorithm, n=50, speed=20, width=800, height=600, **kwargs):
 
     # Font setup
     font_name = pygame.font.match_font("Courier New") or pygame.font.get_default_font()
-    font = pygame.font.Font(font_name, 20)
-    font.set_bold(True)
+    font_algo_name = pygame.font.Font(font_name, 20)
+    font_algo_name.set_bold(True)
 
     # Text setup
-    text = font.render(algorithm, True, COLORS["reg"], COLORS["bg"])
-    textbox = text.get_rect(topleft=(10,10))
+    text_algo_name = font_algo_name.render(algorithm, True, COLORS["reg"], COLORS["bg"])
+    textbox_algo_name = text_algo_name.get_rect(topleft=(10,10))
 
     # Initialize array
     arr = random.sample(range(1, n + 1), n)
@@ -142,7 +142,7 @@ def visualize(algorithm, n=50, speed=20, width=800, height=600, **kwargs):
                 arr = list(range(1, n + 1))
                 draw_bars(arr, screen,h1=h1, h2=h2, h3=h3, sorted=True)
 
-            screen.blit(text, textbox)
+            screen.blit(text_algo_name, textbox_algo_name)
 
             # Update display
             pygame.display.flip()
