@@ -33,7 +33,7 @@ To visualise an algorithm, call the `visualize` function which will launch a Pyg
 
 **Example:**
 
-```
+```py
 visualize("Insertion Sort", n=100, speed=45, width=1440, height=900)
 ```
 
@@ -48,7 +48,7 @@ Supported Gap Sequences:
 | Shell                           | `shell`       | 1959 |
 | Hibbard                         | `hibbard`     | 1961 |
 | Papernov and Stasevich          | `papernov`    | 1965 |
-| Knuth                           | `knuth`      | 1973 |
+| Knuth                           | `knuth`       | 1973 |
 | Sedgewick (First sequence)      | `sedgewick82` | 1982 |
 | Sedgewick (Second sequence)     | `sedgewick86` | 1986 |
 | Tokuda                          | `tokuda`      | 1992 |
@@ -58,7 +58,7 @@ Supported Gap Sequences:
 
 **Example:**
 
-```
+```py
 visualize("Shell Sort", sequence="ciura")
 ```
 
