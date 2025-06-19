@@ -13,6 +13,7 @@ from shell import shell_sort
 from selection import selection_sort
 from heap import heap_sort
 from radix import radix_sort
+from quick import quick_sort
 
 COLORS = {
     "background": (0, 0, 0),
@@ -33,7 +34,8 @@ ALGORITHMS = {
     "shell": ("Shell Sort", shell_sort),
     "selection": ("Selection Sort", selection_sort),
     "heap": ("Heap Sort", heap_sort),
-    "radix": ("Radix Sort", radix_sort)
+    "radix": ("Radix Sort", radix_sort),
+    "quick": ("Quick Sort", quick_sort)
 }
 
 MIN_SPEED = 2

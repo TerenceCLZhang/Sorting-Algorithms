@@ -2,18 +2,21 @@
 
 Visualises the following algorithms:
 
-- Bogo Sort
-- Exchange Sort
-- Bubble Sort
-- Odd Even Sort
-- Comb Sort
-- Cocktail Sort
-- Gnome Sort
-- Insertion Sort
-- Shell Sort
-- Selection Sort
-- Heap Sort
-- Radix Sort
+| Sorting Algorithm | Call Name   | Best Case  | Average Case | Worst Case |
+| ----------------- | ----------- | ---------- | ------------ | ---------- |
+| Bogo Sort         | `bogo`      | O(n)       | O((n·n)!)    | O(∞)       |
+| Exchange Sort     | `exchange`  | O(n²)      | O(n²)        | O(n²)      |
+| Bubble Sort       | `bubble`    | O(n)       | O(n²)        | O(n²)      |
+| Odd Even Sort     | `oddeven`   | O(n)       | O(n²)        | O(n²)      |
+| Comb Sort         | `comb`      | O(n log n) | O(n²/2^p)    | O(n²)      |
+| Cocktail Sort     | `cocktail`  | O(n)       | O(n²)        | O(n²)      |
+| Gnome Sort        | `gnome`     | O(n)       | O(n²)        | O(n²)      |
+| Insertion Sort    | `insertion` | O(n)       | O(n²)        | O(n²)      |
+| Shell Sort        | `shell`     | O(n log n) | O(n(log n)²) | O(n²)      |
+| Selection Sort    | `selection` | O(n²)      | O(n²)        | O(n²)      |
+| Heap Sort         | `heap`      | O(n log n) | O(n log n)   | O(n log n) |
+| Radix Sort        | `radix`     | O(nk)      | O(nk)        | O(nk)      |
+| Quick Sort        | `quick`     | O(n log n) | O(n log n)   | O(n²)      |
 
 ## Visualizing
 
@@ -21,43 +24,61 @@ To visualise an algorithm, call the `visualize` function which will launch a Pyg
 
 ### Parameters:
 
-| Parameter   | Type  | Default      | Description                                                                                                                         |
-| ----------- | ----- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `algorithm` | `str` | _(required)_ | Name of the sorting algorithm to visualise. Must match a key in the `ALGORITHMS` dictionary (e.g., `"Bubble Sort"`, `"Heap Sort"`). |
-| `n`         | `int` | `100`        | Number of elements in the array to sort. A unique random permutation of integers from 1 to `n` is generated.                        |
-| `speed`     | `int` | `50`         | Animation speed in steps per second. A higher number means faster visualisation.                                                    |
-| `width`     | `int` | `800`        | Width of the Pygame window in pixels.                                                                                               |
-| `height`    | `int` | `600`        | Height of the Pygame window in pixels.                                                                                              |
+| Parameter   | Type  | Default      | Description                                                                                                  |
+| ----------- | ----- | ------------ | ------------------------------------------------------------------------------------------------------------ |
+| `algorithm` | `str` | _(required)_ | Name of the sorting algorithm to visualise. Must match a one of the "Call Names" in the above table.         |
+| `n`         | `int` | `100`        | Number of elements in the array to sort. A unique random permutation of integers from 1 to `n` is generated. |
+| `speed`     | `int` | `50`         | Animation speed in steps per second. A higher number means faster visualisation.                             |
+| `width`     | `int` | `800`        | Width of the Pygame window in pixels.                                                                        |
+| `height`    | `int` | `600`        | Height of the Pygame window in pixels.                                                                       |
 
 **Example:**
 
 ```py
-visualize("Insertion Sort", n=100, speed=45, width=1440, height=900)
+visualize("insertion", n=100, speed=45, width=1440, height=900)
 ```
 
 #### Shell Sort: Gap Sequences
 
-When using Shell Sort, you can optionally specify a custom gap sequence using the sequence keyword. If no sequence is provided, the default is Shell’s original gap sequence (1959).
+When using Shell Sort, you can optionally specify a custom gap sequence using the `sequence` keyword. If no sequence is provided, the default is Shell’s original gap sequence.
 
 Supported Gap Sequences:
 
-| Sequence Name                   | Keyword       | Year |
-| ------------------------------- | ------------- | ---- |
-| Shell                           | `shell`       | 1959 |
-| Hibbard                         | `hibbard`     | 1961 |
-| Papernov and Stasevich          | `papernov`    | 1965 |
-| Knuth                           | `knuth`       | 1973 |
-| Sedgewick (First sequence)      | `sedgewick82` | 1982 |
-| Sedgewick (Second sequence)     | `sedgewick86` | 1986 |
-| Tokuda                          | `tokuda`      | 1992 |
-| Ciura                           | `ciura`       | 2001 |
-| Lee                             | `lee`         | 2021 |
-| Skean, Ehrenborg, and Jaromczyk | `skean`       | 2023 |
+| Sequence Name                   | Keyword       |
+| ------------------------------- | ------------- |
+| Shell                           | `shell`       |
+| Hibbard                         | `hibbard`     |
+| Papernov and Stasevich          | `papernov`    |
+| Knuth                           | `knuth`       |
+| Sedgewick (First sequence)      | `sedgewick82` |
+| Sedgewick (Second sequence)     | `sedgewick86` |
+| Tokuda                          | `tokuda`      |
+| Ciura                           | `ciura`       |
+| Lee                             | `lee`         |
+| Skean, Ehrenborg, and Jaromczyk | `skean`       |
 
 **Example:**
 
 ```py
-visualize("Shell Sort", sequence="ciura")
+visualize("shell", sequence="ciura")
+```
+
+#### Quick Sort: Partition Schemes
+
+When using Quick Sort, you can optionally specify a custom partitioning scheme scheme using the `scheme` keyword. If no sequence is provided, the default is the Hoare partitioning sequence.
+
+Supported Partition Schemes:
+
+| Partition Scheme    | Keyword  |
+| ------------------- | -------- |
+| Hoare               | `hoare`  |
+| Lomuto              | `lomuto` |
+| Dutch National Flag | `dutch`  |
+
+**Example:**
+
+```py
+visualize("quick", sequence="lomuto")
 ```
 
 ## Controls
