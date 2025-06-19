@@ -3,19 +3,17 @@
 Visualises the following algorithms:
 
 - Bogo Sort
-- Bozo Sort
 - Exchange Sort
 - Bubble Sort
-- Optimized Bubble Sort
 - Odd Even Sort
 - Comb Sort
 - Cocktail Sort
 - Gnome Sort
 - Insertion Sort
-- Binary Insertion Sort
 - Shell Sort
 - Selection Sort
 - Heap Sort
+- Radix Sort
 
 ## Visualizing
 
@@ -26,8 +24,8 @@ To visualise an algorithm, call the `visualize` function which will launch a Pyg
 | Parameter   | Type  | Default      | Description                                                                                                                         |
 | ----------- | ----- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `algorithm` | `str` | _(required)_ | Name of the sorting algorithm to visualise. Must match a key in the `ALGORITHMS` dictionary (e.g., `"Bubble Sort"`, `"Heap Sort"`). |
-| `n`         | `int` | `50`         | Number of elements in the array to sort. A unique random permutation of integers from 1 to `n` is generated.                        |
-| `speed`     | `int` | `20`         | Animation speed in steps per second. A higher number means faster visualisation.                                                    |
+| `n`         | `int` | `100`        | Number of elements in the array to sort. A unique random permutation of integers from 1 to `n` is generated.                        |
+| `speed`     | `int` | `50`         | Animation speed in steps per second. A higher number means faster visualisation.                                                    |
 | `width`     | `int` | `800`        | Width of the Pygame window in pixels.                                                                                               |
 | `height`    | `int` | `600`        | Height of the Pygame window in pixels.                                                                                              |
 

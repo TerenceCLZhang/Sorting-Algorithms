@@ -1,17 +1,6 @@
+from misc import finished_animation
+
 def comb_sort(arr):
-    """
-    Sorts a list in ascending order using the Comb Sort algorithm.
-
-    Comb Sort improves on Bubble Sort by eliminating small values near the end of the list early on.
-    It works by repeatedly comparing and swapping elements that are a certain 'gap' apart.
-    The gap starts as the length of the list and shrinks by a shrink factor (typically 1.3) each pass,
-    until it reaches 1. At that point, it behaves like Bubble Sort.
-
-    Time Complexities:
-    - Best: Ω(n log n)
-    - Average: Θ(n²)
-    - Worst: O(n²)
-    """
     n = len(arr)
     gap = n
     shrink = 1.3
@@ -33,5 +22,7 @@ def comb_sort(arr):
                 arr[i], arr[i + gap] = arr[i + gap], arr[i]
                 is_sorted = False
 
-            yield arr, [i], [i + gap], []
+            yield arr, [i, i + gap], []
             i += 1
+    
+    yield from finished_animation(arr)

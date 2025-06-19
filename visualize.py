@@ -1,42 +1,41 @@
 import pygame
 import random
 
-from bogo import bogo_sort, bozo_sort
+from bogo import bogo_sort
 from exchange import exchange_sort
-from bubble import bubble_sort, optimized_bubble_sort
+from bubble import bubble_sort
 from oddeven import odd_even_sort
 from comb import comb_sort
 from cocktail import cocktail_shaker_sort
 from gnome import gnome_sort
-from insertion import insertion_sort, binary_insertion_sort
+from insertion import insertion_sort
 from shell import shell_sort
 from selection import selection_sort
 from heap import heap_sort
+from radix import radix_sort
 
 COLORS = {
-    "bg": (0, 0, 0),
-    "reg": (255, 255, 255),
-    "h1": (255, 100, 100),
-    "h2": (255, 165, 0),
-    "h3": (100, 100, 255),
+    "background": (0, 0, 0),
+    "regular": (255, 255, 255),
+    "highlight": (255, 100, 100),
     "sorted": (0, 255, 100)
 }
+
 ALGORITHMS = {
-    "Bogo Sort": bogo_sort,
-    "Bozo Sort": bozo_sort,
-    "Exchange Sort": exchange_sort,
-    "Bubble Sort": bubble_sort,
-    "Optimized Bubble Sort": optimized_bubble_sort,
-    "Odd Even Sort": odd_even_sort,
-    "Comb Sort": comb_sort,
-    "Cocktail Shaker Sort": cocktail_shaker_sort,
-    "Gnome Sort": gnome_sort,
-    "Insertion Sort": insertion_sort,
-    "Shell Sort": shell_sort,
-    "Binary Insertion Sort": binary_insertion_sort,
-    "Selection Sort": selection_sort,
-    "Heap Sort": heap_sort,
+    "bogo": ("Bogo Sort", bogo_sort),
+    "exchange": ("Exchange Sort", exchange_sort),
+    "bubble": ("Bubble Sort", bubble_sort),
+    "oddeven": ("Odd Even Sort", odd_even_sort),
+    "comb": ("Comb Sort", comb_sort),
+    "cocktail": ("Cocktail Shaker Sort", cocktail_shaker_sort),
+    "gnome": ("Gnome Sort", gnome_sort),
+    "insertion": ("Insertion Sort", insertion_sort),
+    "shell": ("Shell Sort", shell_sort),
+    "selection": ("Selection Sort", selection_sort),
+    "heap": ("Heap Sort", heap_sort),
+    "radix": ("Radix Sort", radix_sort)
 }
+
 MIN_SPEED = 2
 MAX_SPEED = 1000
 
@@ -48,9 +47,9 @@ def draw_bar(arr, screen, i, color, screen_h, bar_w):
     bar = pygame.Rect(round(x), round(y), max(1, round(bar_w)), round(bar_h))
     pygame.draw.rect(screen, color, bar)
 
-def draw_bars(arr, screen, h1=[], h2=[], h3=[], sorted=False):
+def draw_bars(arr, screen, h1=[], h2=[], sorted=False):
     n = len(arr)
-    screen.fill(COLORS["bg"])
+    screen.fill(COLORS["background"])
     screen_w, screen_h = screen.get_size()
     bar_w = screen_w / n
 
@@ -59,19 +58,19 @@ def draw_bars(arr, screen, h1=[], h2=[], h3=[], sorted=False):
             draw_bar(arr, screen, i, COLORS["sorted"], screen_h, bar_w)
     else:
         for i in range(n):
-            draw_bar(arr, screen, i, COLORS["reg"], screen_h, bar_w)
+            draw_bar(arr, screen, i, COLORS["regular"], screen_h, bar_w)
 
         for i in h1:
-            draw_bar(arr, screen, i, COLORS["h1"], screen_h, bar_w)
-
+            draw_bar(arr, screen, i, COLORS["highlight"], screen_h, bar_w)
+        
         for i in h2:
-            draw_bar(arr, screen, i, COLORS["h2"], screen_h, bar_w)
-
-        for i in h3:
-            draw_bar(arr, screen, i, COLORS["h3"], screen_h, bar_w)
+            draw_bar(arr, screen, i, COLORS["sorted"], screen_h, bar_w)
 
 
-def visualize(algorithm, n=50, speed=20, width=800, height=600, **kwargs):
+def visualize(algo, n=100, speed=50, width=800, height=600, **kwargs):
+    if algo not in ALGORITHMS:
+        raise ValueError(f"Unknown algorithm key: '{algo}'. Valid options are: {', '.join(ALGORITHMS.keys())}") 
+    
     # Initialize pygame
     pygame.init()
     screen = pygame.display.set_mode((width, height))
@@ -83,7 +82,7 @@ def visualize(algorithm, n=50, speed=20, width=800, height=600, **kwargs):
     font_algo_name.set_bold(True)
 
     # Text setup
-    text_algo_name = font_algo_name.render(algorithm, True, COLORS["reg"], COLORS["bg"])
+    text_algo_name = font_algo_name.render(ALGORITHMS[algo][0], True, COLORS["regular"], COLORS["background"])
     textbox_algo_name = text_algo_name.get_rect(topleft=(10,10))
 
     # Initialize array
@@ -91,7 +90,7 @@ def visualize(algorithm, n=50, speed=20, width=800, height=600, **kwargs):
     original_arr = arr
 
     # Get algorithm
-    algorithm = ALGORITHMS[algorithm]
+    algorithm = ALGORITHMS[algo][1]
     sorting_process = algorithm(arr, **kwargs)
 
     # Variables
@@ -133,14 +132,14 @@ def visualize(algorithm, n=50, speed=20, width=800, height=600, **kwargs):
                     running = False
 
         if not paused:
-            arr, h1, h2, h3 = next(sorting_process, (None, None, None, None))
+            arr, h1, h2 = next(sorting_process, (None, None, None))
             
             # Draw the array
             if arr:
-                draw_bars(arr, screen, h1=h1, h2=h2, h3=h3)
+                draw_bars(arr, screen, h1, h2)
             else:
                 arr = list(range(1, n + 1))
-                draw_bars(arr, screen,h1=h1, h2=h2, h3=h3, sorted=True)
+                draw_bars(arr, screen, h1, h2, sorted=True)
 
             screen.blit(text_algo_name, textbox_algo_name)
 
