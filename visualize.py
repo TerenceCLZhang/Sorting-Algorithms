@@ -1,22 +1,6 @@
 import pygame
 import random
-
-from bogo import bogo_sort
-from bozo import bozo_sort
-from exchange import exchange_sort
-from bubble import bubble_sort
-from oddeven import odd_even_sort
-from comb import comb_sort
-from cocktail import cocktail_shaker_sort
-from gnome import gnome_sort
-from insertion import insertion_sort
-from shell import shell_sort
-from selection import selection_sort
-from heap import heap_sort
-from radix import radix_sort
-from quick import quick_sort
-from stooge import stooge_sort
-from pancake import pancake_sort
+from algorithms import *
 
 COLORS = {
     "background": (0, 0, 0),
