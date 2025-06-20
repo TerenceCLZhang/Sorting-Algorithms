@@ -2,6 +2,7 @@ import pygame
 import random
 
 from bogo import bogo_sort
+from bozo import bozo_sort
 from exchange import exchange_sort
 from bubble import bubble_sort
 from oddeven import odd_even_sort
@@ -14,6 +15,8 @@ from selection import selection_sort
 from heap import heap_sort
 from radix import radix_sort
 from quick import quick_sort
+from stooge import stooge_sort
+from pancake import pancake_sort
 
 COLORS = {
     "background": (0, 0, 0),
@@ -24,6 +27,7 @@ COLORS = {
 
 ALGORITHMS = {
     "bogo": ("Bogo Sort", bogo_sort),
+    "bozo": ("Bozo Sort", bozo_sort),
     "exchange": ("Exchange Sort", exchange_sort),
     "bubble": ("Bubble Sort", bubble_sort),
     "oddeven": ("Odd Even Sort", odd_even_sort),
@@ -35,7 +39,9 @@ ALGORITHMS = {
     "selection": ("Selection Sort", selection_sort),
     "heap": ("Heap Sort", heap_sort),
     "radix": ("Radix Sort", radix_sort),
-    "quick": ("Quick Sort", quick_sort)
+    "quick": ("Quick Sort", quick_sort),
+    "stooge": ("Stooge Sort", stooge_sort),
+    "pancake": ("Pancake Sort", pancake_sort),
 }
 
 MIN_SPEED = 2
