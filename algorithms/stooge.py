@@ -1,5 +1,6 @@
 from misc import finished_animation
 
+
 def stooge_sort(arr):
     def stooge_sort_recursive(i, j):
         if arr[i] > arr[j]:
@@ -10,6 +11,6 @@ def stooge_sort(arr):
             yield from stooge_sort_recursive(i, j - t)
             yield from stooge_sort_recursive(i + t, j)
             yield from stooge_sort_recursive(i, j - t)
-    
+
     yield from stooge_sort_recursive(0, len(arr) - 1)
     yield from finished_animation(arr)

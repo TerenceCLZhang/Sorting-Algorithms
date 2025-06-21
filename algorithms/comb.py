@@ -1,5 +1,6 @@
 from misc import finished_animation
 
+
 def comb_sort(arr):
     n = len(arr)
     gap = n
@@ -14,7 +15,7 @@ def comb_sort(arr):
             is_sorted = True
         elif gap == 9 or gap == 10:
             gap = 11
-        
+
         # Single comb over the list
         i = 0
         while i + gap < n:
@@ -24,5 +25,5 @@ def comb_sort(arr):
 
             yield arr, [i, i + gap], []
             i += 1
-    
+
     yield from finished_animation(arr)

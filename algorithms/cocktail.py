@@ -1,5 +1,6 @@
 from misc import finished_animation
 
+
 def cocktail_shaker_sort(arr):
     n = len(arr)
     is_sorted = False
@@ -30,8 +31,8 @@ def cocktail_shaker_sort(arr):
                 is_sorted = False
 
             yield arr, [i, i + 1], []
-        
+
         # Update start
         start += 1
-    
+
     yield from finished_animation(arr)

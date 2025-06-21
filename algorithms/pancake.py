@@ -1,5 +1,6 @@
 from misc import finished_animation
 
+
 def pancake_sort(arr):
     def flip(k):
         left = 0
@@ -8,7 +9,7 @@ def pancake_sort(arr):
             yield arr, [left, k], []
             k -= 1
             left += 1
-    
+
     n = len(arr)
     while n > 1:
         max_index = max(range(n), key=lambda i: arr[i])
@@ -17,5 +18,5 @@ def pancake_sort(arr):
                 yield from flip(max_index)
             yield from flip(n - 1)
         n -= 1
-        
+
     yield from finished_animation(arr)

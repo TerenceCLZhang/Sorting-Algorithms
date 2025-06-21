@@ -1,6 +1,7 @@
 import math
 from misc import finished_animation
 
+
 def shell_gaps(n):
     gaps = []
     curr = n // 2
@@ -17,7 +18,6 @@ def hibbard_gaps(n):
         gaps.append(gap)
         i += 1
     return gaps[::-1]
-
 
 
 def papernov_stasevich_gaps(n):
@@ -101,10 +101,11 @@ def shell_sort(arr, sequence="shell"):
         "lee": lee_gaps,
         "skean": skean_ehrenborg_jaromczyk_gaps
     }
-    
+
     if sequence not in SEQUENCES:
-        raise ValueError(f"Invalid partition scheme '{sequence}'. Supported schemes are: {', '.join(SEQUENCES.keys())}.")
-    
+        raise ValueError(
+            f"Invalid partition scheme '{sequence}'. Supported schemes are: {', '.join(SEQUENCES.keys())}.")
+
     n = len(arr)
     gaps = SEQUENCES[sequence](n)
 
@@ -117,7 +118,7 @@ def shell_sort(arr, sequence="shell"):
                 arr[j] = arr[j - gap]
                 yield arr, [i, j - gap], []
                 j -= gap
-                    
+
             if arr[j] != temp:
                 arr[j] = temp
                 yield arr, [i, j], []

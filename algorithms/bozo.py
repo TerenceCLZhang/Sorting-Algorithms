@@ -1,6 +1,7 @@
 import random
 from misc import finished_animation
 
+
 def bozo_sort(arr):
     def is_sorted(arr):
         for i in range(1, len(arr)):
@@ -12,5 +13,5 @@ def bozo_sort(arr):
         i, j = random.sample(range(len(arr)), 2)
         arr[i], arr[j] = arr[j], arr[i]
         yield arr, [i, j], []
-    
+
     yield from finished_animation(arr)

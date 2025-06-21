@@ -1,5 +1,6 @@
 from misc import finished_animation
 
+
 def insertion_sort(arr):
     for i in range(1, len(arr)):
         j = i
@@ -9,5 +10,5 @@ def insertion_sort(arr):
             j -= 1
 
         yield arr, [i], []
-    
+
     yield from finished_animation(arr)

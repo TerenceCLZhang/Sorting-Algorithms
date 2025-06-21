@@ -1,5 +1,6 @@
 from misc import finished_animation
 
+
 def gnome_sort(arr):
     i = 0
     while i < len(arr):
@@ -12,5 +13,5 @@ def gnome_sort(arr):
             arr[i], arr[i - 1] = arr[i - 1], arr[i]
             yield arr, [i - 1, i], []
             i -= 1
-            
+
     yield from finished_animation(arr)
