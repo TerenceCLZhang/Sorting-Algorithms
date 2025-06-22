@@ -4,8 +4,10 @@ from constants import COLORS, ALGORITHMS, FONT
 
 
 class MainMenu(Screen):
-    def __init__(self):
+    def __init__(self, on_start=None):
         super().__init__()
+
+        self.on_start_callback = on_start
 
         # Initialize variables
         self.algorithms = list(ALGORITHMS.keys())
@@ -109,12 +111,8 @@ class MainMenu(Screen):
             "n": self.n_value.get(),
             "fps": self.fps_value.get(),
         }
-        print(config)
+        if self.on_start_callback:
+            self.on_start_callback(config)
 
     def run(self):
         self.window.mainloop()
-
-
-if __name__ == "__main__":
-    mm = MainMenu()
-    mm.run()
