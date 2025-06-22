@@ -111,6 +111,7 @@ class MainMenu(Screen):
             "n": self.n_value.get(),
             "fps": self.fps_value.get(),
         }
+        self.window.destroy()
         if self.on_start_callback:
             self.on_start_callback(config)
 

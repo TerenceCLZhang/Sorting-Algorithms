@@ -1,4 +1,3 @@
-import tkinter as tk
 from main_menu import MainMenu
 from visualizer import Visualizer
 
@@ -12,8 +11,6 @@ class App():
         self.main_menu.run()
 
     def start_visualizer(self, config):
-        self.main_menu.window.destroy()
-
         self.visualizer = Visualizer(
             algorithm_name=config["algo"],
             n=config["n"],

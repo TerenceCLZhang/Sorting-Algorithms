@@ -23,11 +23,11 @@ Visualises the following algorithms:
 
 ## Controls
 
-| **Control Key** | **Action**            |
-| --------------- | --------------------- |
-| `+`             | Increase speed        |
-| `-`             | Decrease speed        |
-| `Space`         | Pause/Resume          |
-| `r`             | Restart current array |
-| `n`             | Generate new array    |
-| `Escape`        | Exit visualization    |
+| **Control Key** | **Action**                        |
+| --------------- | --------------------------------- |
+| `+`             | Increase speed                    |
+| `-`             | Decrease speed                    |
+| `Space`         | Pause/Resume                      |
+| `r`             | Restart current array             |
+| `n`             | Generate new array                |
+| `Escape`        | Exit visualization / Back to menu |
