@@ -1,12 +1,14 @@
 import tkinter as tk
 import random
-from constants import WIDTH, HEIGHT, COLORS, ALGORITHMS, TITLE
+from screen import Screen
+from constants import WIDTH, HEIGHT, COLORS, ALGORITHMS
 
 
-class Visualizer:
-    def __init__(self, algo="bogo", n=100, fps=60):
-        self.algorithm_name = ALGORITHMS[algo][0]
-        self.algorithm = ALGORITHMS[algo][1]
+class Visualizer(Screen):
+    def __init__(self, algorithm_name="Bogo Sort", n=50, fps=60):
+        super().__init__()
+
+        self.algorithm = ALGORITHMS[algorithm_name]
         self.n = n
         self.fps = fps
 
@@ -14,20 +16,13 @@ class Visualizer:
 
         self.sorting_process = self.algorithm(self.arr)
 
-        self.window = tk.Tk()
-
-        self.window.title(TITLE)
-        self.window.geometry(f"{WIDTH}x{HEIGHT}")
-        self.window.configure(background=COLORS["background"])
-        self.window.resizable(False, False)
-
         self.canvas = tk.Canvas(self.window, width=WIDTH, height=HEIGHT,
                                 bg=COLORS["background"], highlightthickness=0)
         self.canvas.pack()
 
         title_label = tk.Label(
             self.window,
-            text=self.algorithm_name,
+            text=algorithm_name,
             fg=COLORS["regular"],
             bg=COLORS["background"],
             font=("Courier", 15)
@@ -91,7 +86,7 @@ class Visualizer:
                 self.sorting_process = self.algorithm(self.arr)
                 self.paused = False
 
-        def game_loop():
+        def window_loop():
             if not self.paused:
                 self.canvas.delete("all")
 
@@ -104,10 +99,15 @@ class Visualizer:
                     self.arr = list(range(1, self.n + 1))
                     self.draw_bars(h1, h2, sorted=True)
 
-            self.window.after(1000 // self.fps, game_loop)
+            self.window.after(1000 // self.fps, window_loop)
 
         self.window.bind("<Key>", on_key)
 
-        game_loop()
+        self.window.after(1000, window_loop)
 
         self.window.mainloop()
+
+
+if __name__ == "__main__":
+    v = Visualizer(algorithm_name="Stooge Sort")
+    v.run()

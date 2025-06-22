@@ -12,21 +12,23 @@ COLORS = {
     "sorted": "#00FF64"       # Greenish
 }
 
+FONT = "Courier"
+
 ALGORITHMS = {
-    "bogo": ("Bogo Sort", bogo_sort),
-    "bozo": ("Bozo Sort", bozo_sort),
-    "exchange": ("Exchange Sort", exchange_sort),
-    "bubble": ("Bubble Sort", bubble_sort),
-    "oddeven": ("Odd Even Sort", odd_even_sort),
-    "comb": ("Comb Sort", comb_sort),
-    "cocktail": ("Cocktail Shaker Sort", cocktail_shaker_sort),
-    "gnome": ("Gnome Sort", gnome_sort),
-    "insertion": ("Insertion Sort", insertion_sort),
-    "shell": ("Shell Sort", shell_sort),
-    "selection": ("Selection Sort", selection_sort),
-    "heap": ("Heap Sort", heap_sort),
-    "radix": ("Radix Sort", radix_sort),
-    "quick": ("Quick Sort", quick_sort),
-    "stooge": ("Stooge Sort", stooge_sort),
-    "pancake": ("Pancake Sort", pancake_sort),
+    "Bogo Sort": bogo_sort,
+    "Bozo Sort": bozo_sort,
+    "Exchange Sort": exchange_sort,
+    "Bubble Sort": bubble_sort,
+    "Odd Even Sort": odd_even_sort,
+    "Comb Sort": comb_sort,
+    "Cocktail Shaker Sort": cocktail_shaker_sort,
+    "Gnome Sort": gnome_sort,
+    "Insertion Sort": insertion_sort,
+    "Shell Sort": shell_sort,
+    "Selection Sort": selection_sort,
+    "Heap Sort": heap_sort,
+    "Radix Sort": radix_sort,
+    "Quick Sort": quick_sort,
+    "Stooge Sort": stooge_sort,
+    "Pancake Sort": pancake_sort,
 }
