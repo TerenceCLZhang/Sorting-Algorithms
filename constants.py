@@ -3,20 +3,14 @@ from algorithms import *
 WIDTH = 800
 HEIGHT = 600
 
-CAPTION = "Sorting Algorithm Visualizer"
-
-FPS = 60
+TITLE = "Sorting Algorithms Visualizer"
 
 COLORS = {
-    "background": (0, 0, 0),
-    "regular": (255, 255, 255),
-    "highlight": (255, 100, 100),
-    "sorted": (0, 255, 100)
+    "background": "#000000",  # Black
+    "regular": "#FFFFFF",     # White
+    "highlight": "#FF6464",   # Light Red
+    "sorted": "#00FF64"       # Greenish
 }
-
-SCENE_MAIN_MENU = "main_menu"
-SCENE_SHELL_SORT_SEQUENCE = "shell_sequence"
-SCENE_QUICK_SORT_SCHEME = "quick_scheme"
 
 ALGORITHMS = {
     "bogo": ("Bogo Sort", bogo_sort),

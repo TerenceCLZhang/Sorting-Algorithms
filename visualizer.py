@@ -1,127 +1,113 @@
-import pygame
+import tkinter as tk
 import random
-from constants import *
-
-MIN_SPEED = 2
-MAX_SPEED = 1000
+from constants import WIDTH, HEIGHT, COLORS, ALGORITHMS, TITLE
 
 
-def draw_bar(arr, screen, i, color, screen_h, bar_w):
-    bar_h = screen_h * (arr[i] / len(arr))
-    x = i * bar_w
-    y = screen_h - bar_h
-    bar = pygame.Rect(round(x), round(y), max(1, round(bar_w)), round(bar_h))
-    pygame.draw.rect(screen, color, bar)
+class Visualizer:
+    def __init__(self, algo="bogo", n=100, fps=60):
+        self.algorithm_name = ALGORITHMS[algo][0]
+        self.algorithm = ALGORITHMS[algo][1]
+        self.n = n
+        self.fps = fps
 
+        self.arr, self.original_arr = self.initialize_arr()
 
-def draw_bars(arr, screen, h1=[], h2=[], sorted=False):
-    n = len(arr)
-    screen.fill(COLORS["background"])
-    screen_w, screen_h = screen.get_size()
-    bar_w = screen_w / n
+        self.sorting_process = self.algorithm(self.arr)
 
-    if sorted:
-        for i in range(n):
-            draw_bar(arr, screen, i, COLORS["sorted"], screen_h, bar_w)
-    else:
-        for i in range(n):
-            draw_bar(arr, screen, i, COLORS["regular"], screen_h, bar_w)
+        self.window = tk.Tk()
 
-        for i in h1:
-            draw_bar(arr, screen, i, COLORS["highlight"], screen_h, bar_w)
+        self.window.title(TITLE)
+        self.window.geometry(f"{WIDTH}x{HEIGHT}")
+        self.window.configure(background=COLORS["background"])
+        self.window.resizable(False, False)
 
-        for i in h2:
-            draw_bar(arr, screen, i, COLORS["sorted"], screen_h, bar_w)
+        self.canvas = tk.Canvas(self.window, width=WIDTH, height=HEIGHT,
+                                bg=COLORS["background"], highlightthickness=0)
+        self.canvas.pack()
 
+        title_label = tk.Label(
+            self.window,
+            text=self.algorithm_name,
+            fg=COLORS["regular"],
+            bg=COLORS["background"],
+            font=("Courier", 15)
+        )
+        title_label.place(x=10, y=10)
 
-def visualize(algo, n=100, speed=50, **kwargs):
-    if algo not in ALGORITHMS:
-        raise ValueError(
-            f"Unknown algorithm: '{algo}'. Valid options are: {', '.join(ALGORITHMS.keys())}")
+        self.paused = False
 
-    if type(n) is not int:
-        raise ValueError("n must be an integer")
-    elif n <= 0:
-        raise ValueError("Number of values in array must be positive")
-    elif n > 500:
-        raise ValueError("Number of values in array cannot be more than 1000")
+    def initialize_arr(self):
+        arr = random.sample(range(1, self.n + 1), self.n)
+        original_arr = arr
+        return arr, original_arr
 
-    # Initialize pygame
-    pygame.init()
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption(CAPTION)
+    def draw_bar(self, i, color, bar_w):
+        bar_h = HEIGHT * (self.arr[i] / len(self.arr))
+        x = int(i * bar_w)
+        y = int(HEIGHT - bar_h)
 
-    # Font setup
-    font_name = pygame.font.match_font(
-        "Courier New") or pygame.font.get_default_font()
-    font_algo_name = pygame.font.Font(font_name, 20)
-    font_algo_name.set_bold(True)
+        if bar_w >= 1:
+            self.canvas.create_rectangle(
+                x, y, x + bar_w, HEIGHT,
+                outline=COLORS["background"],
+                fill=color,
+                width=1,
+            )
+        else:
+            self.canvas.create_line(
+                x, y, x, HEIGHT,
+                fill=color
+            )
 
-    # Text setup
-    text_algo_name = font_algo_name.render(
-        ALGORITHMS[algo][0], True, COLORS["regular"], COLORS["background"])
-    textbox_algo_name = text_algo_name.get_rect(topleft=(10, 10))
+    def draw_bars(self, h1=[], h2=[], sorted=False):
+        n = len(self.arr)
+        bar_w = WIDTH / n
 
-    # Initialize array
-    arr = random.sample(range(1, n + 1), n)
-    original_arr = arr
+        if sorted:
+            for i in range(n):
+                self.draw_bar(i, COLORS["sorted"], bar_w)
+        else:
+            for i in range(n):
+                self.draw_bar(i, COLORS["regular"], bar_w)
 
-    # Get algorithm
-    algorithm = ALGORITHMS[algo][1]
-    sorting_process = algorithm(arr, **kwargs)
+            for i in h1:
+                self.draw_bar(i, COLORS["highlight"], bar_w)
 
-    # Variables
-    current_speed = speed
-    paused = False
+            for i in h2:
+                self.draw_bar(i, COLORS["sorted"], bar_w)
 
-    running = True
-    while running:
-        # User interactions
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
+    def run(self):
+        def on_key(event):
+            if event.keysym == "Escape":
+                self.window.destroy()
+            if event.keysym == "space":
+                self.paused = not self.paused
+            if event.keysym == "r":
+                self.arr = self.original_arr.copy()
+                self.sorting_process = self.algorithm(self.arr)
+                self.paused = False
+            if event.keysym == "n":
+                self.arr, self.original_arr = self.initialize_arr()
+                self.sorting_process = self.algorithm(self.arr)
+                self.paused = False
 
-            if event.type == pygame.KEYDOWN:
-                if event.key in [pygame.K_KP_PLUS, pygame.K_PLUS] and current_speed < MAX_SPEED:
-                    current_speed += 2
-                    if current_speed > MIN_SPEED:
-                        paused = False
+        def game_loop():
+            if not self.paused:
+                self.canvas.delete("all")
 
-                if event.key in [pygame.K_KP_MINUS, pygame.K_MINUS] and current_speed > MIN_SPEED:
-                    current_speed -= 2
-                    if current_speed == MIN_SPEED:
-                        paused = True
+                self.arr, h1, h2 = next(
+                    self.sorting_process, (None, None, None))
 
-                if event.key == pygame.K_SPACE:
-                    paused = not paused
+                if self.arr:
+                    self.draw_bars(h1, h2)
+                else:
+                    self.arr = list(range(1, self.n + 1))
+                    self.draw_bars(h1, h2, sorted=True)
 
-                if event.key == pygame.K_r:
-                    arr = original_arr
-                    sorting_process = algorithm(arr, **kwargs)
-                    paused = False
+            self.window.after(1000 // self.fps, game_loop)
 
-                if event.key == pygame.K_n:
-                    arr = random.sample(range(1, n + 1), n)
-                    sorting_process = algorithm(arr, **kwargs)
-                    paused = False
+        self.window.bind("<Key>", on_key)
 
-                if event.key == pygame.K_ESCAPE:
-                    running = False
+        game_loop()
 
-        if not paused:
-            arr, h1, h2 = next(sorting_process, (None, None, None))
-
-            # Draw the array
-            if arr:
-                draw_bars(arr, screen, h1, h2)
-            else:
-                arr = list(range(1, n + 1))
-                draw_bars(arr, screen, h1, h2, sorted=True)
-
-            screen.blit(text_algo_name, textbox_algo_name)
-
-            # Update display
-            pygame.display.flip()
-            pygame.time.wait(1000 // current_speed)
-
-    pygame.quit()
+        self.window.mainloop()
