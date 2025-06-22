@@ -1,6 +1,6 @@
 import tkinter as tk
-from screen import Screen
-from constants import COLORS, ALGORITHMS, FONT
+from gui.screen import Screen
+from gui.constants import COLORS, ALGORITHMS, FONT
 
 
 class MainMenu(Screen):

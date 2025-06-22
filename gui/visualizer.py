@@ -1,7 +1,7 @@
 import tkinter as tk
 import random
-from screen import Screen
-from constants import WIDTH, HEIGHT, COLORS, ALGORITHMS
+from gui.screen import Screen
+from gui.constants import WIDTH, HEIGHT, COLORS, ALGORITHMS
 
 
 class Visualizer(Screen):

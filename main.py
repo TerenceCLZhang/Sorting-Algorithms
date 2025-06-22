@@ -1,5 +1,4 @@
-from main_menu import MainMenu
-from visualizer import Visualizer
+from gui import *
 
 
 class App():

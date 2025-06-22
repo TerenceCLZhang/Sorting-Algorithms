@@ -1,5 +1,5 @@
 import tkinter as tk
-from constants import WIDTH, HEIGHT, COLORS, TITLE
+from gui.constants import WIDTH, HEIGHT, COLORS, TITLE
 
 
 class Screen:
