@@ -1,5 +1,5 @@
 import random
-from misc import finished_animation
+from algorithms.misc import finished_animation
 
 
 def bogo_sort(arr):

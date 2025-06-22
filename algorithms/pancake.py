@@ -1,4 +1,4 @@
-from misc import finished_animation
+from algorithms.misc import finished_animation
 
 
 def pancake_sort(arr):
