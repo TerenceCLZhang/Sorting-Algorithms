@@ -18,22 +18,27 @@ COLORS = {
 FONT = "Courier"
 
 ALGORITHMS = {
-    "Bogo Sort": bogo_sort,
-    "Bozo Sort": bozo_sort,
-    "Exchange Sort": exchange_sort,
-    "Bubble Sort": bubble_sort,
-    "Odd Even Sort": odd_even_sort,
+    # Optimal (O(n log n)) or better
+    "Tim Sort": tim_sort,
+    "Merge Sort": merge_sort,
+    "Heap Sort": heap_sort,
+    "Quick Sort": quick_sort,
+    "Radix Sort": radix_sort,
+
+    # Simple/Classic Sorts (O(n^2))
+    "Shell Sort": shell_sort,
     "Comb Sort": comb_sort,
     "Cocktail Shaker Sort": cocktail_shaker_sort,
-    "Gnome Sort": gnome_sort,
+    "Odd Even Sort": odd_even_sort,
     "Insertion Sort": insertion_sort,
-    "Shell Sort": shell_sort,
+    "Gnome Sort": gnome_sort,
     "Selection Sort": selection_sort,
-    "Heap Sort": heap_sort,
-    "Radix Sort": radix_sort,
-    "Quick Sort": quick_sort,
-    "Stooge Sort": stooge_sort,
-    "Pancake Sort": pancake_sort,
-    "Tim Sort": tim_sort,
+    "Exchange Sort": exchange_sort,
     "Cycle Sort": cycle_sort,
+
+    # Inefficient / Educational / Joke Sorts
+    "Pancake Sort": pancake_sort,
+    "Stooge Sort": stooge_sort,
+    "Bozo Sort": bozo_sort,
+    "Bogo Sort": bogo_sort,
 }

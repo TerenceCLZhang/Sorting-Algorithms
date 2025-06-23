@@ -16,3 +16,4 @@ from algorithms.stooge import stooge_sort
 from algorithms.pancake import pancake_sort
 from algorithms.tim import tim_sort
 from algorithms.cycle import cycle_sort
+from algorithms.merge import merge_sort
