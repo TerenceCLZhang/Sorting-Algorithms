@@ -31,7 +31,7 @@ class MainMenu(Screen):
         # Display variable adjustors
         self.algorithms_display()
         self.slider_display("Number of Elements:", self.n_value, 1, 500)
-        self.slider_display("FPS:", self.fps_value, 1, 100)
+        self.slider_display("FPS:", self.fps_value, 1, 300)
 
         # Start button
         start_button = tk.Button(self.window, text="Start", font=(

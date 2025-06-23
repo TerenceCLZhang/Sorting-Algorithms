@@ -15,7 +15,7 @@ class Visualizer(Screen):
         self.on_exit_callback = on_exit
 
         self.MIN_FPS = 1
-        self.MAX_FPS = 100
+        self.MAX_FPS = 300
 
         self.paused = False
 
