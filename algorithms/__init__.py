@@ -14,3 +14,5 @@ from algorithms.radix import radix_sort
 from algorithms.quick import quick_sort
 from algorithms.stooge import stooge_sort
 from algorithms.pancake import pancake_sort
+from algorithms.tim import tim_sort
+from algorithms.cycle import cycle_sort

@@ -1,14 +1,15 @@
 import tkinter as tk
 import random
 from gui.screen import Screen
-from gui.constants import WIDTH, HEIGHT, COLORS, ALGORITHMS
+from gui.constants import CANVAS_WIDTH, CANVAS_HEIGHT, COLORS, ALGORITHMS
 
 
 class Visualizer(Screen):
     def __init__(self, algorithm_name="Bogo Sort", n=50, fps=60, on_exit=None):
         super().__init__()
 
-        self.algorithm = ALGORITHMS[algorithm_name]
+        self.algorithm_name = algorithm_name
+        self.algorithm = ALGORITHMS[self.algorithm_name]
         self.n = n
         self.fps = fps
         self.on_exit_callback = on_exit
@@ -23,27 +24,18 @@ class Visualizer(Screen):
         self.arr, self.original_arr = self.initialize_arr()
         self.sorting_process = self.algorithm(self.arr)
 
-        self.canvas = tk.Canvas(self.window, width=WIDTH, height=HEIGHT,
+        self.canvas = tk.Canvas(self.window, width=CANVAS_WIDTH, height=CANVAS_HEIGHT,
                                 bg=COLORS["background"], highlightthickness=0)
-        self.canvas.pack()
+        self.canvas.pack(side="bottom")
 
-        title_label = tk.Label(
+        self.label = tk.Label(
             self.window,
-            text=algorithm_name,
+            text=f"Algorithm: {self.algorithm_name} | FPS: {self.fps}",
             fg=COLORS["regular"],
             bg=COLORS["background"],
-            font=("Courier", 15)
+            font=("Courier", 10)
         )
-        title_label.place(x=10, y=10)
-
-        self.fps_label = tk.Label(
-            self.window,
-            text=f"FPS: {self.fps}",
-            fg=COLORS["regular"],
-            bg=COLORS["background"],
-            font=("Courier", 15)
-        )
-        self.fps_label.place(x=10, y=50)
+        self.label.place(x=10, y=10)
 
     def initialize_arr(self):
         arr = random.sample(range(1, self.n + 1), self.n)
@@ -51,26 +43,26 @@ class Visualizer(Screen):
         return arr, original_arr
 
     def draw_bar(self, i, color, bar_w):
-        bar_h = HEIGHT * (self.arr[i] / len(self.arr))
+        bar_h = CANVAS_HEIGHT * (self.arr[i] / len(self.arr))
         x = int(i * bar_w)
-        y = int(HEIGHT - bar_h)
+        y = int(CANVAS_HEIGHT - bar_h)
 
         if bar_w >= 1:
             self.canvas.create_rectangle(
-                x, y, x + bar_w, HEIGHT,
+                x, y, x + bar_w, CANVAS_HEIGHT,
                 outline=COLORS["background"],
                 fill=color,
                 width=1,
             )
         else:
             self.canvas.create_line(
-                x, y, x, HEIGHT,
+                x, y, x, CANVAS_HEIGHT,
                 fill=color
             )
 
     def draw_bars(self, h1=[], h2=[], sorted=False):
         n = len(self.arr)
-        bar_w = WIDTH / n
+        bar_w = CANVAS_WIDTH / n
 
         if sorted:
             for i in range(n):
@@ -124,7 +116,8 @@ class Visualizer(Screen):
                     self.fps = max(self.fps - 1, self.MIN_FPS)
 
         def window_loop():
-            self.fps_label.config(text=f"FPS: {self.fps}")
+            self.label.config(
+                text=f"Algorithm: {self.algorithm_name} | FPS: {self.fps}")
 
             if not self.paused:
                 self.canvas.delete("all")

@@ -1,7 +1,10 @@
 from algorithms import *
 
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 960
+HEIGHT = 540
+
+CANVAS_WIDTH = 960
+CANVAS_HEIGHT = 500
 
 TITLE = "Sorting Algorithms Visualizer"
 
@@ -31,4 +34,6 @@ ALGORITHMS = {
     "Quick Sort": quick_sort,
     "Stooge Sort": stooge_sort,
     "Pancake Sort": pancake_sort,
+    "Tim Sort": tim_sort,
+    "Cycle Sort": cycle_sort,
 }
