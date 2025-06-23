@@ -9,6 +9,7 @@ def bogo_sort(arr):
                 return False
         return True
 
+    # Keep shuffling until sorted
     while not is_sorted(arr):
         random.shuffle(arr)
         bad_indices = [i for i in range(1, len(arr)) if arr[i] < arr[i - 1]]

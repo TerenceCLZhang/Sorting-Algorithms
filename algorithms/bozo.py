@@ -9,6 +9,7 @@ def bozo_sort(arr):
                 return False
         return True
 
+    # Keep swapping random pairs until the array is sorted
     while not is_sorted(arr):
         i, j = random.sample(range(len(arr)), 2)
         arr[i], arr[j] = arr[j], arr[i]
