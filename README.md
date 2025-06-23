@@ -1,8 +1,8 @@
 # Sorting Algorithm Visualizer
 
-An interactive Python application built with Tkinter to visualize and compare various sorting algorithms.
+An interactive tool built with Python and Tkinter to help visualize how different sorting algorithms work in real time.
 
-![Main menu](images/menu.png)
+![Visualization](images/visualization.png)
 
 ## Features
 
@@ -63,6 +63,17 @@ Python 3.7 or higher
    ```
 
 3. Run the application:
+
    ```bash
    python main.py
    ```
+
+4. Adjust settings:
+
+   - **Choose the sorting algorithm** you want to visualize from the list.
+   - **Set the number of elements** in the array to sort (minimum: 1, maximum: 500).
+   - **Set the frames per second (FPS)** to control the animation speed (minimum: 1, maximum: 300).
+   - **Click the Start** button to begin the visualization.
+   - **Press `Escape` at any time** to return to the main menu.
+
+   ![Main menu](images/menu.png)
